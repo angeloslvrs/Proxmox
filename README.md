@@ -9,7 +9,7 @@
 # Proxmox Scripts
 https://tteck.github.io/Proxmox/
 
-# Vaultwarden
+# Vaultwarden-alpine
 Control if users can create an account
 - nano /etc/conf.d/vaultwarden
 
