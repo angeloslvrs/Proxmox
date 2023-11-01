@@ -21,29 +21,45 @@ https://www.youtube.com/watch?v=E60_FC967YE
 
 # Removing Temporary Cluster (from Migration)
 https://pve.proxmox.com/wiki/Cluster_Manager
-First, stop the corosync and pve-cluster services on the node:
+## Separating a Proxmox Node from a Cluster
 
-systemctl stop pve-cluster
-systemctl stop corosync
-Start the cluster file system again in local mode:
+1. Stop the corosync and pve-cluster services on the node:
+    ```bash
+    systemctl stop pve-cluster
+    systemctl stop corosync
+    ```
 
-pmxcfs -l
-Delete the corosync configuration files:
+2. Start the cluster file system again in local mode:
+    ```bash
+    pmxcfs -l
+    ```
 
-rm /etc/pve/corosync.conf
-rm -r /etc/corosync/*
-You can now start the file system again as a normal service:
+3. Delete the corosync configuration files:
+    ```bash
+    rm /etc/pve/corosync.conf
+    rm -r /etc/corosync/*
+    ```
 
-killall pmxcfs
-systemctl start pve-cluster
-The node is now separated from the cluster. You can deleted it from any remaining node of the cluster with:
+4. Start the file system again as a normal service:
+    ```bash
+    killall pmxcfs
+    systemctl start pve-cluster
+    ```
 
-pvecm delnode oldnode
-If the command fails due to a loss of quorum in the remaining node, you can set the expected votes to 1 as a workaround:
+5. The node is now separated from the cluster. Delete it from any remaining node of the cluster with:
+    ```bash
+    pvecm delnode oldnode
+    ```
 
-pvecm expected 1
-And then repeat the pvecm delnode command.
+6. If the command fails due to a loss of quorum in the remaining node, set the expected votes to 1 as a workaround:
+    ```bash
+    pvecm expected 1
+    ```
 
-Now switch back to the separated node and delete all the remaining cluster files on it. This ensures that the node can be added to another cluster again without problems.
+7. Repeat the `pvecm delnode` command.
 
-rm /var/lib/corosync/*
+8. Switch back to the separated node and delete all remaining cluster files on it to ensure smooth addition to another cluster:
+    ```bash
+    rm /var/lib/corosync/*
+    ```
+
