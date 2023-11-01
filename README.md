@@ -1,27 +1,53 @@
 # Proxmox
-# Mounting SMB Share (https://support.zadarastorage.com/hc/en-us/articles/213024986-How-to-Mount-a-SMB-Share-in-Ubuntu)
-1. sudo apt-get install cifs-utils
-2. sudo mkdir /mnt/"ur share name"
-3. sudo mount -t cifs -o user="user on smb share" //"ip"/"smb folder" /mnt/"ur share name"
-4. sudo nano etc/fstab
-5. //"ip"/"share" /mnt/"ur share name" cifs user="user on smb share",password="password",uid="user on machine",users 0 0
 
-# Fixing Realtek RT8111 drivers
-https://medium.com/@pattapongj/how-to-fix-network-issues-after-upgrading-proxmox-from-7-to-8-and-encountering-the-r8169-error-d2e322cc26ed
+## Mounting SMB Share
+[Guide Link](https://support.zadarastorage.com/hc/en-us/articles/213024986-How-to-Mount-a-SMB-Share-in-Ubuntu)
 
-# Proxmox Scripts
-https://tteck.github.io/Proxmox/
+1. Install cifs-utils:
+    ```bash
+    sudo apt-get install cifs-utils
+    ```
 
-# Vaultwarden-alpine
-Control if users can create an account
-- nano /etc/conf.d/vaultwarden
+2. Create a directory for your share:
+    ```bash
+    sudo mkdir /mnt/"your_share_name"
+    ```
 
-# Migration
-https://www.youtube.com/watch?v=E60_FC967YE
+3. Mount the SMB share:
+    ```bash
+    sudo mount -t cifs -o user="user_on_smb_share" //"ip"/"smb_folder" /mnt/"your_share_name"
+    ```
 
-# Removing Temporary Cluster (from Migration)
-https://pve.proxmox.com/wiki/Cluster_Manager
-## Separating a Proxmox Node from a Cluster
+4. Edit the `/etc/fstab` file:
+    ```bash
+    sudo nano /etc/fstab
+    ```
+
+5. Add the following line to automatically mount the SMB share on boot:
+    ```bash
+    //"ip"/"share" /mnt/"your_share_name" cifs user="user_on_smb_share",password="password",uid="user_on_machine",users 0 0
+    ```
+
+## Fixing Realtek RT8111 Drivers
+[Guide Link](https://medium.com/@pattapongj/how-to-fix-network-issues-after-upgrading-proxmox-from-7-to-8-and-encountering-the-r8169-error-d2e322cc26ed)
+
+## Proxmox Scripts
+[Link](https://tteck.github.io/Proxmox/)
+
+## Vaultwarden-alpine
+Control if users can create an account:
+- Edit the configuration file:
+    ```bash
+    nano /etc/conf.d/vaultwarden
+    ```
+
+## Migration
+[Video Guide](https://www.youtube.com/watch?v=E60_FC967YE)
+
+## Removing Temporary Cluster (from Migration)
+[Proxmox Wiki Link](https://pve.proxmox.com/wiki/Cluster_Manager)
+
+### Separating a Proxmox Node from a Cluster
 
 1. Stop the corosync and pve-cluster services on the node:
     ```bash
@@ -62,4 +88,3 @@ https://pve.proxmox.com/wiki/Cluster_Manager
     ```bash
     rm /var/lib/corosync/*
     ```
-
