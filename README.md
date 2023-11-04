@@ -87,4 +87,8 @@ Control if users can create an account:
 8. Switch back to the separated node and delete all remaining cluster files on it to ensure smooth addition to another cluster:
     ```bash
     rm /var/lib/corosync/*
-    ```
+
+## [ALDER LAKE] Enabling GPU split-passthrough
+
+1. https://gist.github.com/scyto/e4e3de35ee23fdb4ae5d5a3b85c16ed3?permalink_comment_id=4744285
+2. IF it wont compile, use this fix: https://github.com/strongtz/i915-sriov-dkms/issues/117
