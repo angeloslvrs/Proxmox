@@ -28,6 +28,9 @@
     //"ip"/"share" /mnt/"your_share_name" cifs user="user_on_smb_share",password="password",uid="user_on_machine",users 0 0
     ```
 
+## Expanding LVM and fixing errors
+[Guide Link] (https://packetpushers.net/ubuntu-extend-your-default-lvm-space/)
+
 ## Fixing Realtek RT8111 Drivers
 [Guide Link](https://medium.com/@pattapongj/how-to-fix-network-issues-after-upgrading-proxmox-from-7-to-8-and-encountering-the-r8169-error-d2e322cc26ed)
 
