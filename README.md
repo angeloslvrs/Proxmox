@@ -27,6 +27,18 @@
     ```bash
     //"ip"/"share" /mnt/"your_share_name" cifs user="user_on_smb_share",password="password",uid="user_on_machine",users 0 0
     ```
+## Allowing Root SSH access to LXC
+
+[Guide Link] (https://github.com/tteck/Proxmox/discussions/385)
+
+```bash
+sudo sh -c 'echo "root:$1" | chpasswd && sed -i "/^#*PermitRootLogin/c\PermitRootLogin yes" /etc/ssh/sshd_config; grep -q "^PermitRootLogin" /etc/ssh/sshd_config || echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && systemctl restart sshd' -- "Your@StrongPassword"
+```
+Change 
+```bash 
+Your@StrongPassword
+```
+to your desired password
 
 ## Expanding LVM and fixing errors
 [Guide Link] (https://packetpushers.net/ubuntu-extend-your-default-lvm-space)
