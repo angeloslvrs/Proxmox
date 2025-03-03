@@ -106,4 +106,12 @@ Control if users can create an account:
 ## [ALDER LAKE] Enabling GPU split-passthrough
 
 1. https://gist.github.com/scyto/e4e3de35ee23fdb4ae5d5a3b85c16ed3?permalink_comment_id=4744285
+
+
+
+
+
+
+## [UPS install on Proxmox Baremetal]
+https://www.kreaweb.be/diy-home-server-2021-software-proxmox-ups/
 2. IF it wont compile, use this fix: https://github.com/strongtz/i915-sriov-dkms/issues/117
